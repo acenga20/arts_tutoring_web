@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <section id="navigation">
+        <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
+            <div class="flex items-center space-x-6">
+                <div class="text-md">ArtistryLab</div>
+                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
+                    lectures
+                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="text-md"> Sign In </a>
+                <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
+            </div>
+
+        </nav>
+    </section>
+    <section id="hero" class=" w-full">
+
+        <div class="flex flex-col h-full mx-12 mt-20 ">
+
+            <div class="flex mb-16">
+                <div class="text-start text-5xl font-bold pt-12 tracking-normal w-full">
+                    <span class="uppercase">{{ lecture.field }} </span>
+                    - {{ lecture.name }}</div>
+            </div>
+            <div class="flex mb-10 h-100">
+                <div class="swiper swiper-2 w-1/2 block">
+                    <!-- swiper slides -->
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{{ asset('build/images/pian.b180330b.jpg') }}" class="w-full h-fit object-cover" alt=""/>
+                        </div>
+
+                        <div class="swiper-slide" >
+                            <img src="{{ asset('build/images/pian.b180330b.jpg') }}" class="w-full h-fit object-cover" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="{{ asset('build/images/pian.b180330b.jpg') }}" class="w-full h-fit object-cover" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="{{ asset('build/images/pian.b180330b.jpg') }}" class="w-full h-fit object-cover" alt="">
+                        </div>
+
+                        <div class="swiper-slide">
+                            <img src="{{ asset('build/images/pian.b180330b.jpg') }}" class="w-full h-fit object-cover" alt="">
+                        </div>
+                    </div>
+                    <!-- next / prev arrows -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- !next / prev arrows -->
+                </div>
+                <div class="flex flex-col items-center justify-center w-1/2">
+                    <div class="flex flex-col w-1/2 items-left">
+                        {% set type = lecture.type|split(',') %}
+                        <div class="text-lg"><span class="font-semibold">Instructed By: </span>{{ lecture.user.name }} {{ lecture.user.surname }}</div>
+                        <div class="text-lg"><span class="font-semibold">Type of lecture: </span>{{ type[1] }}</div>
+                        <div class="text-lg"><span class="font-semibold">When: </span>{{ lecture.startDate | date("F j, Y") }}</div>
+                        <div class="text-lg"><span class="font-semibold">Where: </span>{{ type[0] }}</div>
+                    </div>
+                    <button class="rounded-full w-1/4 text-2xl bg-mint font-extrabold uppercase text-center px-6 py-3 mt-10 mb-2">CONTACT</button>
+                    <div class="text-sm">Contact the instructor and book a place in the classroom.</div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section>
+        <div class="mx-12 flex flex-col w-4/5">
+            <div class="font-semibold text-2xl mb-2">Description</div>
+            <div class="font-lg mb-6">
+                {{ lecture.description }}
+            </div>
+            <div class="font-semibold text-2xl mb-2">Get to know the lecturer</div>
+            <div class="flex space-x-4 mb-8 mt-4">
+                <img src="{{ asset('build/images/cliff-pinwill.807e025e.jpg') }}" class="w-28 h-28 rounded-full border-white object-cover">
+                <div class="flex flex-col leading-6 justify-center">
+                    <span class="font-semibold">{{ lecture.user.name }} {{ lecture.user.surname }}</span>
+                    <span class="">{{ lecture.user.interests }} {{ lecture.user.type }}</span>
+                    <span class="">{{ lecture.user.email }}</span>
+                </div>
+            </div>
+            <div class="font-lg mb-6">
+                {{ lecture.user.description }}
+            </div>
+        </div>
+
+        <div class="flex flex-col mb-10">
+            <div class="flex justify-between mb-8 ml-12 mr-28 ">
+                <div class="font-semibold text-2xl"> Shop our best music items</div>
+                <a class="bg-mint w-fit px-4 py-1 rounded-full font-bold">See all</a>
+            </div>
+            <div class="grid grid-cols-4 mx-12">
+                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
+                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                    <div class="flex justify-between h-1/4">
+                        <div class="flex flex-col mx-2">
+                            <span class="text-sm">Vintage Guitar</span>
+                        </div>
+                        <span class="text-md">$200</span>
+                    </div>
+                </div>
+                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
+                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                    <div class="flex justify-between h-1/4">
+                        <div class="flex flex-col mx-2">
+                            <span class="text-sm">Vintage Guitar</span>
+                        </div>
+                        <span class="text-md">$200</span>
+                    </div>
+                </div>
+                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
+                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                    <div class="flex justify-between h-1/4">
+                        <div class="flex flex-col mx-2">
+                            <span class="text-sm">Vintage Guitar</span>
+                        </div>
+                        <span class="text-md">$200</span>
+                    </div>
+                </div><div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
+                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                    <div class="flex justify-between h-1/4">
+                        <div class="flex flex-col mx-2">
+                            <span class="text-sm">Vintage Guitar</span>
+                        </div>
+                        <span class="text-md">$200</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="flex h-72 bg-black items-center">
+            <span class="text-white text-2xl uppercase mx-auto">footer</span>
+        </div>
+    </footer>
+{% endblock %}

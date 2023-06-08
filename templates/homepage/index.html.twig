@@ -1,0 +1,296 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<section id="navigation">
+    <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
+        <div class="flex items-center space-x-6">
+            <div class="text-md">ArtistryLab</div>
+            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
+                lectures
+                <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a class="text-md"> Sign In </a>
+            <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
+        </div>
+
+    </nav>
+</section>
+<section id="hero" class="h-screen w-full" data-controller="home">
+
+    <div class="h-full w-fulld">
+        <img src="{{ asset('build/images/piano.c9cfc6c4.jpg') }}" alt="" class="object-cover w-full h-full opacity-80">
+        <div class="bg-white w-1/3 h-fit absolute top-1/4 left-1/2 px-16 py-20">
+            <div class="flex flex-col space-y-7 w-80 mx-auto items-center">
+                <span class="text-3xl font-extrabold  uppercase mx-auto">
+                GET IN TOUCH WITH YOUR CREATIVE SIDE
+                </span>
+
+                <a href="{{ path('app_login') }}"class="rounded-full w-1/2 bg-mint font-extrabold uppercase text-center px-6 py-3">
+                        join us now
+                </a>
+                <span class="text-black text-sm font-semibold">or explore all the available <a class="underline decoration-solid">lectures</a></span>
+
+            </div>
+        </div>
+        <div id="modal"></div>
+
+    </div>
+
+</section>
+
+<section id="lectures-section">
+    <div class="flex flex-col mx-auto w-full max-w-5xl xl:max-w-6xl 2xl:max-w-mid 3xl:max-w-8xl mt-12">
+        <div class="text-4xl font-extrabold mx-auto">Explore inspiring lectures</div>
+        <div class="flex justify-between text-lg my-6">
+            <span class="font-bold">Best Rated</span>
+            <a class="bg-mint w-fit px-4 py-1 rounded-full font-bold">See all</a>
+        </div>
+        <div class="grid grid-cols-3 gap-x-16 gap-y-10">
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
+                <div class="flex flex-col px-4 py-2">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div>
+                        <div class="font-semibold text-sm mt-2 mb-3 ">Never too old to learn a new instrument - Piano lesson beginner level </div>
+                        <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}">
+                <div class="flex flex-col justify-between px-4 py-2  ">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Guitar lesson beginner level </div>
+                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
+                <div class="flex flex-col justify-between px-4 py-2">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
+                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
+                <div class="flex flex-col justify-between px-4 py-2">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
+                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}">
+                <div class="flex flex-col justify-between px-4 py-2  ">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Guitar lesson beginner level </div>
+                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                </div>
+            </div>
+            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
+                <div class="flex flex-col justify-between px-4 py-2">
+                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
+                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="shop-section" class="bg-white">
+    <div class="flex flex-col mx-auto w-full max-w-5xl xl:max-w-6xl 2xl:max-w-mid 3xl:max-w-8xl mt-12">
+        <div class="text-4xl font-extrabold mx-auto">Explore inspiring lectures</div>
+        <span class="text-sm mx-auto mt-2 text-black/70"> Invest in a piece of history today and elevate your collection to the next level</span>
+
+    </div>
+    <swiper-container class="mySwiper pt-12  h-96" id="shop-swiper" space-between="40" initial-slide="2" slide-to-clicked-slide="true"
+                      slides-per-view="4.3" centered-slides="true">
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72">
+                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+        <swiper-slide>
+            <div class="card flex flex-col bg-white rounded-xl h-72 w-72">
+                <img class="h-3/4 w-fit rounded-xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}"/>
+                <div class="flex justify-between h-1/4">
+                    <div class="flex flex-col mx-2">
+                        <span class="text-sm">Vintage Guitar</span>
+                        <span class="text-xs">Second-hand</span>
+                    </div>
+                    <span class="text-md">$200</span>
+                </div>
+            </div>
+        </swiper-slide>
+    </swiper-container>
+    <script>
+        let swiperEl = document.getElementById('shop-swiper')
+        swiperEl.addEventListener('statechange', (event) => {
+            let slides = swiperEl.getElementsByClassName('swiper-slide');
+            Array.prototype.forEach.call(slides, function (slide){
+                let itemCard = slide.firstChild.nextSibling;
+                if(slide.classList.contains('swiper-slide-active')){
+                    itemCard.classList.remove('scale-95')
+                    itemCard.classList.add('scale-125');
+                }else{
+                    if(itemCard.classList.contains('scale-125')){
+                        itemCard.classList.remove('scale-125')
+                        itemCard.classList.add('scale-95')
+                    }
+                }
+            })
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+</section>
+
+<section id="teachers">
+    <div class="flex flex-col items-center mx-auto max-w-5xl xl:max-w-6xl 2xl:max-w-mid 3xl:max-w-8xl mt-12">
+        <div class="mx-auto text-4xl font-extrabold mb-8">
+            Meet our lecturers
+        </div>
+        <div class="flex flex-col space-y-6 mx-auto">
+            {% set i = 0 %}
+            {% for i in 0..2 %}
+            <div class="flex space-x-8 justify-between rounded-3xl bg-lightGray shadow-lg h-52">
+                <img class="h-52 w-1/4 rounded-3xl object-cover" src="{{ asset('build/images/cliff-pinwill.807e025e.jpg') }}"/>
+                <div class="w-3/4 flex flex-col  py-6">
+                    <span class="text-md text-black font-semibold">Max</span>
+                    <span class="text-black/40 text-sm">Location</span>
+                    <div class="text-sm w-full mt-2 pr-20">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </div>
+                    <div class="flex mt-8 items-end">
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                </div>
+            </div>
+                {% set i = i + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="statistics">
+    <div class="grid grid-cols-4 justify-between items-center mx-auto max-w-5xl xl:max-w-6xl 2xl:max-w-mid 3xl:max-w-8xl my-24 px-20 ">
+        <div class="rounded-4xl bg-mint flex flex-col px-10 py-6 shadow-xl w-44 mx-auto">
+            <span class="font-extrabold text-4xl mx-auto">10K+</span>
+            <span class="font-medium text-xl mx-auto">Students</span>
+        </div>
+        <div class="rounded-4xl bg-mint flex flex-col px-10 py-6 shadow-xl w-44 mx-auto">
+            <span class="font-extrabold text-4xl mx-auto">15K+</span>
+            <span class="font-medium text-xl mx-auto">Lectures</span>
+        </div>
+        <div class="rounded-4xl bg-mint flex flex-col px-10 py-6 shadow-xl w-44 mx-auto">
+            <span class="font-extrabold text-4xl mx-auto">10K+</span>
+            <span class="font-medium text-xl mx-auto">Items</span>
+        </div>
+        <div class="rounded-4xl bg-mint flex flex-col px-10 py-6 shadow-xl w-44 mx-auto">
+            <span class="font-extrabold text-4xl mx-auto">10K+</span>
+            <span class="font-medium text-xl mx-auto">Students</span>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        <div class="flex h-72 bg-black items-center">
+            <span class="text-white text-2xl uppercase mx-auto">footer</span>
+        </div>
+    </footer>
+{% endblock %}

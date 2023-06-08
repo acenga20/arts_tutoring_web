@@ -6,9 +6,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email!')]
+#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username!')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,22 +32,25 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
+    #[ORM\Column(type:'text')]
+    private ?string $description = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $interests = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $age = null;
+    private ?string $phoneNr = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Item::class)]
     private Collection $item;
 
-    #[ORM\ManyToMany(targetEntity: Lecture::class, mappedBy: 'user')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Lecture::class)]
     private Collection $lecture;
 
     #[ORM\ManyToMany(targetEntity: Event::class, mappedBy: 'user')]
@@ -99,7 +107,9 @@ class User
 
         return $this;
     }
-
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -111,6 +121,19 @@ class User
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
     public function getInterests(): ?string
     {
@@ -124,14 +147,14 @@ class User
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getPhoneNr(): string
     {
-        return $this->age;
+        return $this->phoneNr;
     }
 
-    public function setAge(?int $age): self
+    public function setPhoneNr( string $phoneNr): self
     {
-        $this->age = $age;
+        $this->phoneNr = $phoneNr;
 
         return $this;
     }
@@ -269,5 +292,20 @@ class User
         }
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        return ['ADMIN'];
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
     }
 }

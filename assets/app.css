@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+}
+
+.shopping-items{
+
+}
+
+.swiper-slide-active .card {
+    @apply scale-110 z-10 ;
+}
+.gradient {
+    @apply backdrop-filter backdrop-blur-lg;
+}
+
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev{
+    height: 3.5rem;
+    width: 3rem;
+    border-radius: 4px;
+    font-size: 2rem;
+    line-height: 3rem;
+    background: white;
+    color: black;
+}
+
+.swiper .swiper-button-next:hover,
+.swiper .swiper-button-prev:hover{
+    @apply transform transition duration-300 ease-out bg-black/60;
+    color: white;
+}

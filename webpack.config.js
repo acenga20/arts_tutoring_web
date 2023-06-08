@@ -13,7 +13,11 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
-
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+        pattern: /\.(png|jpg|jpeg|svg|ico)$/
+    })
     /*
      * ENTRY CONFIG
      *
@@ -71,6 +75,12 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .enablePostCssLoader((options) =>{
+        options.postcssOptions = {
+            config: './postcss.config.js'
+        }
+    })
 ;
 
 module.exports = Encore.getWebpackConfig();

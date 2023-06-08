@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+        <section id="navigation">
+            <nav id="nav_bar" class="fixed gradient top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
+                <div class="flex items-center space-x-6">
+                    <div class="text-md">ArtistryLab</div>
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
+                        lectures
+                        <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a class="text-md"> Sign In </a>
+                    <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
+                </div>
+
+            </nav>
+        </section>
+        <section>
+            <div class="relative flex h-screen w-full shadow mx-auto shadow-xl">
+                <!-- Modal header -->
+                <div class="bg-black flex flex-col items-center w-1/2 justify-center relative">
+                    <img src="{{ asset('build/images/art.5f9d2672.jpg') }}" class=" w-full h-full object-cover">
+
+                    <div class="flex flex-col absolute bottom-5 left-1/5">
+                    <span class="text-black text-center font-semibold text-xl items-center italic w-3/4 mx-auto mb-2">"Thanks to ArtistryLab's talented instructors, I've discovered a new passion for painting and developed my artistic skills in ways I never thought possible.
+                        I highly recommend their personalized tutoring services to anyone looking to unlock their creative potential."</span>
+                        <span class="text-black text-center font-medium text-sm mt-1">- One of our talented students -</span>
+                    </div>
+                </div>
+                <div class="flex flex-col w-1/2">
+                    <div class="h-full items-center justify-center flex flex-col">
+                        <div class="items-center flex flex-col  justify-center mb-5 w-full">
+                            <span class="text-4xl text-black font-semibold mb-2 text-center">Welcome back to ArtistryLab!</span>
+                            <span class="text-center text-black/60 font-medium text-sm mt-1 w-2/5">Pick up your journey right where you left off.</span>
+                        </div>
+                        {% if error %}
+                            <div class="flex bg-white border border-red-400 text-red-400 py-1 px-3 items-center rounded-xl">{{ error }}</div>
+                        {% endif %}
+                        {{ form_start(registrationForm, {'attr': {'class': 'flex flex-col space-y-4 mt-4'}} ) }}
+                        {% if not registrationForm.vars.valid  %}
+                        <div class="flex bg-white border border-red-400 text-red-400 py-1 px-3 items-center rounded-xl">
+                            {{ form_errors(registrationForm.username,  { 'attr' : {'class': 'flex bg-white border border-red-400 text-red-400 py-1 px-3 items-center rounded-xl'}}) }}
+
+                        </div>
+                        {% endif %}
+                        <div class="flex space-x-4">
+                            <div>
+                                {{ form_label(registrationForm.name, null, {'attr': {'class': 'block mb-0.5 items-center text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.name, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}} ) }}
+                            </div>
+                            <div>
+                                {{ form_label(registrationForm.surname, null, {'attr': {'class': 'block mb-0.5 items-center text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.surname, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <div>
+                                {{ form_label(registrationForm.username, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.username, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+                            </div>
+                            <div>
+                                {{ form_label(registrationForm.age, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.age, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+
+                            </div>
+                        </div>
+                        <div class="flex space-x-4 w-full">
+                            <div class="w-1/2">
+                                {{ form_label(registrationForm.type, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.type, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+                            </div>
+                            <div class="w-1/2">
+                                {{ form_label(registrationForm.interests, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                                {{ form_widget(registrationForm.interests, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+                            </div>
+                        </div>
+                        <div>
+                            {{ form_label(registrationForm.email, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+                        </div>
+
+                        <div>
+                            {{ form_label(registrationForm.plainPassword, null, {'attr': {'class': 'block mb-0.5 text-sm font-medium text-gray-900 dark:text-white'}}) }}
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'}}) }}
+                        </div>
+
+                        <button type="submit" class="text-black px-3 py-2 w-32 flex items-center text-center mx-auto text-xl font-semibold bg-mint hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-none rounded-2xl  dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"><span class="mx-auto">Register</span></button>
+                        {{ form_end(registrationForm) }}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

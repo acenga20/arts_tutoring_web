@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <section id="navigation">
+        <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
+            <div class="flex items-center space-x-6">
+                <div class="text-md">ArtistryLab</div>
+                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
+                    lectures
+                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="text-md"> Sign In </a>
+                <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
+            </div>
+
+        </nav>
+    </section>
+    <section id="user-profile" data-controller="user" data-user ="{{ user.id}}">
+        <div class="flex  mx-28 space-x-32 mt-32 mb-10 relative">
+            <div class="flex flex-col ">
+                <img src="{{ asset('build/images/cliff-pinwill.807e025e.jpg') }}" class="rounded-full h-32 w-32">
+                <div class="text-black text-xl font-semibold mx-auto mt-2">{{ user.name }} {{ user.surname }}</div>
+                <div class="mx-auto border border-black px-4 py-2 uppercase rounded-2xl font-semibold mt-2">{{ user.type }}</div>
+            </div>
+            <div class="flex flex-col space-y-3">
+                <div class="text-xl font-semibold">Contact</div>
+                <div class="text-md">For booking a course reach out to {{ user.name }} through email,</div>
+                <span class="text-md font-semibold">{{ user.email }}</span>
+                <div class="text-md">or phone number,</div>
+                <span class="text-md font-semibold">+355 67 87 665</span>
+            </div>
+
+            <a href="{{ path('app_user_edit', { 'id' : user.id}) }}" class="flex absolute top-0 right-0 px-3 py-1.5 bg-mint rounded-2xl space-x-1" data-modal-target="staticModal" data-modal-toggle="staticModal">
+                <img src="{{ asset('build/images/edit.svg') }}" />
+                <span class="font-semibold ">Edit</span>
+            </a>
+        </div>
+    </section>
+
+    <section id="user-body" data-controller="user">
+        <div class="flex flex-col mx-28 mt-20 space-y-4">
+            <div class="font-semibold text-xl">About {{ user.name }}</div>
+            {% if user.description %}
+            <div class="text-md">{{ user.description }}</div>
+            {% else %}
+                <div id="description-content" class="flex items-center">
+                    <button data-action="click->user#renderDescInput" class="bg-mint px-5 py-5 rounded-2xl text-xl font-semibold w-fit mx-auto" id="add_desc"> + Add description </button>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="user-teaching-courses">
+        <div class="flex flex-col mx-28 mt-10 space-y-4 max-w-7xl">
+            <div class="flex justify-between items-center">
+                <div class="font-semibold text-xl">Teaching</div>
+                <div data-controller="modal-form" data-modal-form-url-value="{{ path('app_lecture_new', {userId : user.id}) }}">
+                    <button data-action="click->modal-form#openModal"class="bg-mint px-5 py-1 rounded-2xl text-md font-semibold">+</button>
+                    {{ include('_modal.html.twig', {
+                        modalTitle: 'Add a new Lecture'
+                    }) }}
+                </div>
+            </div>
+            <div class="slide-container pb-6">
+                <div class="swiper swiper-1 pb-6">
+                    <div class="swiper-wrapper">
+                        {% for i in 0..5 %}
+                            <div class="swiper-slide">
+                                <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                                    <img class="h-64 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
+                                    <div class="flex flex-col justify-between px-4 py-2">
+                                        <div class="text-end text-xs text-black/50">1 hour</div>
+                                        <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
+                                        <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="user-selling-items">
+        <div class="flex flex-col mx-28 mt-10 space-y-4 max-w-7xl">
+            <div class="flex justify-between items-center">
+                <div class="font-semibold text-xl">Items for sale</div>
+                <button class="bg-mint px-5 py-1 rounded-2xl text-md font-semibold">+</button>
+            </div>
+            <div class="slide-container">
+                <div class="swiper-container swiper pb-6">
+                    <div class="swiper-wrapper">
+                        {% for i in 0..5 %}
+                            <div class="swiper-slide">
+                                <div class="flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+                                    <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                                    <div class="flex justify-between h-1/4">
+                                        <div class="flex flex-col mx-2">
+                                            <span class="text-sm">Vintage Guitar</span>
+                                            <span class="text-xs">Second-hand</span>
+                                        </div>
+                                        <span class="text-md">$200</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class=" bg-lightGray">
+        <div class="flex flex-col mx-28 mt-10 space-y-4 max-w-7xl">
+            <div class="flex justify-between items-center mt-6">
+                <div class="font-semibold text-xl">{{ user.name }}'s Reviews</div>
+                <div class="px-3 py-1 rounded-2xl text-white bg-black">See all</div>
+            </div>
+            {% for i in 0..3 %}
+            <div class="flex flex-col  border-b border-gray-300 ">
+                <div class="flex space-x-6">
+                    <img src="{{ asset('build/images/cliff-pinwill.807e025e.jpg') }}" class="h-24 w-24 rounded-full">
+                    <div class="flex flex-col space-y-1">
+                        <div class="text-md font-semibold">Yana Mitchell</div>
+                        <div class="text-sm">Student</div>
+                    </div>
+                </div>
+                <div class="flex mt-6 items-end">
+                    <svg aria-hidden="true" class="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" class="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" class="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" class="w-7 h-7 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <svg aria-hidden="true" class="w-7 h-7 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                </div>
+                <div class="text-md mt-2 pb-6">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                    text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="flex h-72 bg-black items-center">
+            <span class="text-white text-2xl uppercase mx-auto">footer</span>
+        </div>
+    </footer>
+{% endblock %}

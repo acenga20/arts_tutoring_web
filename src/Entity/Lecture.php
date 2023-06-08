@@ -16,13 +16,13 @@ class Lecture
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'lecture')]
-    private Collection $user;
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: "EAGER", inversedBy: 'lecture')]
+    private User $user;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -45,7 +45,7 @@ class Lecture
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+
         $this->rating = new ArrayCollection();
     }
 
@@ -55,9 +55,9 @@ class Lecture
     }
 
     /**
-     * @return Collection<int, User>
+     * @return  User
      */
-    public function getUser(): Collection
+    public function getUser(): User
     {
         return $this->user;
     }

@@ -1729,16 +1729,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.18.1",
+            "version": "1.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "22dcdfd725ddf99583bfe398fc624ad6c5004a0f"
+                "reference": "f545fc30978190a056832aa7ed995e36a66267f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/22dcdfd725ddf99583bfe398fc624ad6c5004a0f",
-                "reference": "22dcdfd725ddf99583bfe398fc624ad6c5004a0f",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/f545fc30978190a056832aa7ed995e36a66267f3",
+                "reference": "f545fc30978190a056832aa7ed995e36a66267f3",
                 "shasum": ""
             },
             "require": {
@@ -1768,9 +1768,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.18.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.19.1"
             },
-            "time": "2023-04-07T11:51:11+00:00"
+            "time": "2023-04-18T11:30:56+00:00"
         },
         {
             "name": "psr/cache",
@@ -3433,16 +3433,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v6.2.8",
+            "version": "v6.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "751efa84f868337c63e29560c02cff7ae27d874b"
+                "reference": "a123512b46caea497ab8d96d9dbdbdaaf416a606"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/751efa84f868337c63e29560c02cff7ae27d874b",
-                "reference": "751efa84f868337c63e29560c02cff7ae27d874b",
+                "url": "https://api.github.com/repos/symfony/form/zipball/a123512b46caea497ab8d96d9dbdbdaaf416a606",
+                "reference": "a123512b46caea497ab8d96d9dbdbdaaf416a606",
                 "shasum": ""
             },
             "require": {
@@ -3517,7 +3517,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v6.2.8"
+                "source": "https://github.com/symfony/form/tree/v6.2.10"
             },
             "funding": [
                 {
@@ -3533,7 +3533,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-31T11:20:06+00:00"
+            "time": "2023-04-19T08:03:37+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -6643,16 +6643,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v6.2.8",
+            "version": "v6.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "c63584f84edbdba9d2519f888350dd90615abe35"
+                "reference": "c02ea86844926f04247bc1f5db5f85bb53330823"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/c63584f84edbdba9d2519f888350dd90615abe35",
-                "reference": "c63584f84edbdba9d2519f888350dd90615abe35",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/c02ea86844926f04247bc1f5db5f85bb53330823",
+                "reference": "c02ea86844926f04247bc1f5db5f85bb53330823",
                 "shasum": ""
             },
             "require": {
@@ -6731,7 +6731,7 @@
             "description": "Provides tools to validate values",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/validator/tree/v6.2.8"
+                "source": "https://github.com/symfony/validator/tree/v6.2.10"
             },
             "funding": [
                 {
@@ -6747,7 +6747,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-20T16:06:02+00:00"
+            "time": "2023-04-19T09:54:16+00:00"
         },
         {
             "name": "symfony/var-dumper",
