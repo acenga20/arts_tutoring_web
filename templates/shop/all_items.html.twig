@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+    <section id="navigation">
+        <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
+            <div class="flex items-center space-x-6">
+                <div class="text-md">ArtistryLab</div>
+                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
+                    lectures
+                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
+
+                        </path>
+                    </svg>
+                </button>
+                <div id="dropdownNavbar"></div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="text-md"> Sign In </a>
+                <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
+            </div>
+
+        </nav>
+    </section>
+    <section id="hero" class="">
+        <div class="flex flex-col mt-32 mx-12">
+            <div class="w-full flex justify-end mb-4">
+                <div class="w-3/4 flex justify-between items-center">
+                    <div class="text-5xl font-semibold">Shop Items</div>
+                    <div class="flex items-center rounded-2xl w-64 h-10  border border-black">
+                        <img src="{{ asset('build/images/search.svg') }}" class="ml-3" alt="">
+                        <input class="w-full focus:outline-none rounded-2xl mx-2 h-full text-black text-md font-normal placeholder:text-gray-700" placeholder="Search..."/>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="w-1/4 flex flex-col">
+                    <div class="text-2xl font-semibold mb-10">Filter by:</div>
+                    <div class="flex flex-col mb-4">
+                        <div class="text-lg font-semibold mb-2">Type</div>
+                        <div class="flex items-center space-x-2">
+                            <input id='music-filter' type="checkbox">
+                            <label for="music-filter" class="text-md rounded-xl">Music</label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id='arts-filter' type="checkbox">
+                            <label for="arts-filter" class="text-md rounded-xl">Arts</label>
+                        </div>
+
+                        <div class="flex items-center space-x-2">
+                            <input id='sculpture-filter' type="checkbox">
+                            <label for="sculpture-filter-filter" class="text-md rounded-xl">Sculpture</label>
+                        </div>
+                    </div>
+                    <div class="flex flex-col mb-4">
+                        <div class="text-lg font-semibold mb-2">Item Condition</div>
+                        <div class="flex items-center space-x-2">
+                            <input id='remote-filter' type="checkbox">
+                            <label for="remote-filter" class="text-md rounded-xl">New</label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input id='in-person-filter' type="checkbox">
+                            <label for="in-person-filter" class="text-md rounded-xl">Second-hand</label>
+                        </div>
+
+                    </div>
+                    <div class="flex flex-col relative w-full mx-auto rounded">
+                        <div class="text-lg font-semibold mb-2">Price range</div>
+                        <div class="range-slider w-full my-1">
+                            <div class="progress"></div>
+                            <span class="range-min-wrapper">
+                                    <input class="range-min" type="range" min="0" max="100" value="25">
+                                <!-- <span class="range-min-value">0</span> -->
+                                    </span>
+                            <span class="range-max-wrapper">
+                                    <input class="range-max" type="range" min="0" max="100" value="100">
+                                <!-- <span class="range-max-value">100</span> -->
+                                    </span>
+                        </div>
+                        <div class="flex justify-between w-1/2">
+                            <div class="min-value numberVal">
+                                <input type="number" class="border-none text-sm px-0 mx-0 " min="0" max="100" value="25" disabled>
+                            </div>
+                            <div class="max-value numberVal">
+                                <input type="number" class="text-end border-none text-sm px-0 mx-0" min="0" max="100" value="100" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-20 bg-mint text-black font-semibold text-center py-1 rounded-xl mt-3">List All</div>
+
+
+                </div>
+                <div class="w-3/4 flex flex-col">
+                    <div class="grid grid-cols-4 gap-x-3 gap-y-5">
+                        {% for i in 0..10 %}
+                            <div class="card flex flex-col bg-white rounded-xl h-56 w-56 shadow-lg">
+                                <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
+                                <div class="flex justify-between h-1/4">
+                                    <div class="flex flex-col mx-2">
+                                        <span class="text-sm">Vintage Guitar</span>
+                                        <span class="text-xs">Second-hand</span>
+                                    </div>
+                                    <span class="text-md">$200</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+<script>
+
+    const range = document.querySelectorAll(".range-slider span input");
+    let progress = document.querySelector(".range-slider .progress");
+    let gap = 0.1;
+    const inputValue = document.querySelectorAll(".numberVal input");
+
+    console.log('test')
+    range.forEach((input) => {
+        input.addEventListener("input", (e) => {
+            let minRange = parseInt(range[0].value);
+            let maxRange = parseInt(range[1].value);
+
+            if (maxRange - minRange < gap) {
+                if (e.target.className === "range-min") {
+                    range[0].value = maxRange - gap;
+                } else {
+                    range[1].value = minRange + gap;
+                }
+            } else {
+                progress.style.left = (minRange / range[0].max) * 100 + "%";
+                progress.style.right = 100 - (maxRange / range[1].max) * 100 + "%";
+                inputValue[0].value = minRange;
+                inputValue[1].value = maxRange;
+            }
+        });
+    });
+
+</script>
+    <footer>
+        <div class="flex h-72 bg-black items-center">
+            <span class="text-white text-2xl uppercase mx-auto">footer</span>
+        </div>
+    </footer>
+{% endblock %}

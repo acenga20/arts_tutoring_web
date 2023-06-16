@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/lecture')]
+#[Route('/lectures')]
 class LectureController extends AbstractController
 {
     private $doctrine;
@@ -22,13 +22,14 @@ class LectureController extends AbstractController
     {
         $this->doctrine = $doctrine;
     }
-//    #[Route('/')]
-//    public function index(): Response
-//    {
-//        return $this->render('lecture/index.html.twig', [
-//            'controller_name' => 'LectureController',
-//        ]);
-//    }
+
+
+    #[Route('/', name:'app_all_lectures')]
+    public function allLectures():  Response
+    {
+        return $this->render('lecture/all_lectures.html.twig', [
+        ]);
+    }
 
     #[Route('/{id}', name:'app_single_lecture')]
     public function getLecture($id):  Response

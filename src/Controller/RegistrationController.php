@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
             try {
             $user->setName($form->get('name')->getData());
             $user->setSurname($form->get('surname')->getData());
-            $user->setAge($form->get('age')->getData());
+            $user->setPhoneNr($form->get('phoneNr')->getData());
             $user->setUsername($form->get('username')->getData());
             $user->setType($form->get('type')->getData());
             $user->setInterests($form->get('interests')->getData());

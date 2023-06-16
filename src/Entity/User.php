@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(type:'text')]
+    #[ORM\Column(type:'text', nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
