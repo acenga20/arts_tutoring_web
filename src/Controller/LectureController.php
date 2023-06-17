@@ -50,9 +50,13 @@ class LectureController extends AbstractController
         $form = $this->createForm(NewLectureType::class, $lecture);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $user = $em->getRepository(User::class)->findOneBy(['id'=>$userId]);
+            $lecture->setUser($user);
             $em->persist($lecture);
             $em->flush();
-            return $this->redirectToRoute('/user/'.$userId);
+            return $this->redirectToRoute('app_single_user', [
+                'id' => $userId
+            ]);
         }
 
         $template =  'lecture/_new_lecture_form.html.twig';

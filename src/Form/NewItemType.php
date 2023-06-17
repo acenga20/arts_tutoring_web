@@ -2,30 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\Lecture;
-use Doctrine\DBAL\Types\DateType;
+use App\Entity\Item;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NewLectureType extends AbstractType
+class NewItemType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
             ->add('description')
-            ->add('startDate',\Symfony\Component\Form\Extension\Core\Type\DateType::class)
-            ->add('link')
-            ->add('type')
-            ->add('field')
+            ->add('price')
+            ->add('quantity')
+            ->add('item_condition')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Lecture::class,
+            'data_class' => Item::class,
         ]);
     }
 }

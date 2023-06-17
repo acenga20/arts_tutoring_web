@@ -27,13 +27,13 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_single_user')]
     public function getOneUser($id):Response{
         $em = $this->doctrine->getManager();
-
-        $form = $this->createForm(RegistrationFormType::class);
         $user = $em->getRepository(User::class)->findOneBy(['id'=> $id]);
         $lecture = $em->getRepository(Lecture::class)->findOneBy(['id'=> 1]);
+        $userLectures = $em->getRepository(Lecture::class)->findBy(['user'=>$id]);
         return $this->render('user/single_user.html.twig', [
             'user' => $user,
             'lecture' => $lecture,
+            'user_lectures' => $userLectures,
 
         ]);
     }

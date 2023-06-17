@@ -26,7 +26,7 @@ class Item
     #[ORM\Column(nullable: true)]
     private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::BLOB)]
+    #[ORM\Column(type: Types::BLOB, nullable: true )]
     private $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
