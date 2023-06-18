@@ -5,7 +5,7 @@ export default class extends Controller {
         url: String,
     }
     connect(){
-        console.log('heey')
+
     }
     submitNewLectureForm(event){
         let form = document.getElementById('modal-body').getElementsByTagName('form')[0];

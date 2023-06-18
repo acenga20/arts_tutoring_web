@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item - itemname{% endblock %}
+
+{% block body %}
+    {{ include('header.html.twig') }}
+    <section id="item">
+        <div class="flex mx-12  mt-32 h-screen" data-controller="order-manager">
+           <div class="w-1/2">
+               <img class="w-4/5 object-cover" src="{{ asset('build/images/productThumb.jpeg') }}">
+           </div>
+           <div class="w-1/2 flex flex-col items-start">
+               <div class="text-4xl mt-10">Item1</div>
+               <div class="text-sm text-black/70 mb-5">Second-hand</div>
+               <div class="text-md">
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                   ullamco laboris nisi ut aliquip ex ea commodo consequat.
+               </div>
+
+               <div class="flex justify-between items-center w-full pr-12 mt-16">
+                   <div class="flex flex-col" data-controller="quantity-manager">
+                       <span class="text-sm text-black/70">Quantity</span>
+                       <div class="flex space-x-1">
+                           <button class="text-md" data-action="click->quantity-manager#increaseQuantity">+</button>
+                           <span  id="quantity-value" data-min="1" data-max="5" class="border px-4 py-1 rounded-lg">1</span>
+                           <button class="text-md" data-action="click->quantity-manager#decreaseQuantity">-</button>
+                       </div>
+                   </div>
+                   <div class="flex flex-col w-fit">
+                       <span class="text-sm text-black/70">Price</span>
+                       <span class="text-lg font-semibold">$50</span>
+                   </div>
+               </div>
+               <button class="w-36 py-3 mx-auto bg-mint rounded-xl mt-10" data-action="click->order-manager#orderItem">Add To Basket</button>
+           </div>
+        </div>
+    </section>
+    {{ include('footer.html.twig') }}
+{% endblock %}

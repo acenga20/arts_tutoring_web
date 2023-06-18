@@ -3,28 +3,7 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
-    <section id="navigation">
-        <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
-            <div class="flex items-center space-x-6">
-                <div class="text-md">ArtistryLab</div>
-                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
-                    lectures
-                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
-
-                        </path>
-                    </svg>
-                </button>
-                <div id="dropdownNavbar"></div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <a class="text-md"> Sign In </a>
-                <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
-            </div>
-
-        </nav>
-    </section>
+   {{ include('header.html.twig') }}
     <section id="user-profile" data-controller="user" data-user ="{{ user.id}}">
         <div class="flex  mx-28 space-x-32 mt-32 mb-10 relative">
             <div class="flex flex-col ">
@@ -40,10 +19,12 @@
                 <span class="text-md font-semibold">+355 67 87 665</span>
             </div>
 
+            {% if app.user %}
             <a href="{{ path('app_user_edit', { 'id' : user.id}) }}" class="flex absolute top-0 right-0 px-3 py-1.5 bg-mint rounded-2xl space-x-1">
                 <img src="{{ asset('build/images/edit.svg') }}" />
                 <span class="font-semibold ">Edit</span>
             </a>
+            {% endif %}
         </div>
     </section>
 
@@ -60,32 +41,41 @@
         </div>
     </section>
 
-    <section id="user-teaching-courses">
+    <section id="user-teaching-courses" data-controller="user">
         <div class="flex flex-col mx-28 mt-10 space-y-4 max-w-7xl">
             <div class="flex justify-between items-center">
                 <div class="font-semibold text-xl">Teaching</div>
+                {% if app.user %}
                 <div data-controller="modal-form" data-modal-form-url-value="{{ path('app_lecture_new', {userId : user.id}) }}">
                     <button data-action="click->modal-form#openModal"class="bg-mint px-5 py-1 rounded-2xl text-md font-semibold">+</button>
                     {{ include('_modal.html.twig', {
                         modalTitle: 'Add a new Lecture'
                     }) }}
                 </div>
+                {% endif %}
             </div>
             <div class="slide-container pb-6">
                 <div class="swiper swiper-1 pb-6">
                     <div class="swiper-wrapper">
                         {% for lecture in user_lectures %}
                             <div class="swiper-slide">
-                                <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+                                <div class="flex flex-col rounded-b-3xl shadow-lg pb-6 relative">
                                     <img class="h-64 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
                                     <div class="h-28 flex flex-col justify-between px-4 py-2">
                                         <div class="text-end text-xs text-black/50">{{ lecture.type }}</div>
                                         <div class="font-semibold text-sm mt-2 mb-3">{{ lecture.name }}</div>
                                         <div class="font-semibold text-sm text-black/60">{{ lecture.user.name }} {{ lecture.user.surname }}</div>
                                     </div>
+                                    {% if app.user %}
+                                    <span data-action="click->user#deleteLecture" data-lecture-id="{{ lecture.id }}" class="bg-white cursor-pointer border-red-600 rounded-full p-1.5 absolute top-0 right-0">
+                                        <img data-lecture-id="{{ lecture.id }}" src="{{ asset('build/images/bin.svg') }}"/>
+                                    </span>
+                                    {% endif %}
                                 </div>
                             </div>
+
                         {% endfor %}
+
                     </div>
 
                     <div class="swiper-button-prev"></div>
@@ -96,31 +86,38 @@
         </div>
     </section>
 
-    <section id="user-selling-items">
+    <section id="user-selling-items" data-controller="user">
         <div class="flex flex-col mx-28 mt-10 space-y-4 max-w-7xl">
             <div class="flex justify-between items-center">
                 <div class="font-semibold text-xl">Items for sale</div>
+                {% if app.user %}
                 <div data-controller="item-modal-form" data-item-modal-form-url-value="{{ path('app_item_new', {userId : user.id}) }}">
                     <button data-action="click->item-modal-form#openModal"class="bg-mint px-5 py-1 rounded-2xl text-md font-semibold">+</button>
                     {{ include('_item_modal.html.twig', {
                         modalTitle: 'Add a new Item'
                     }) }}
                 </div>
+                {% endif %}
             </div>
             <div class="slide-container">
                 <div class="swiper-container swiper pb-6">
                     <div class="swiper-wrapper">
-                        {% for i in 0..5 %}
+                        {% for item in user_items %}
                             <div class="swiper-slide">
                                 <div class="flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
                                     <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
                                     <div class="flex justify-between h-1/4">
                                         <div class="flex flex-col mx-2">
-                                            <span class="text-sm">Vintage Guitar</span>
-                                            <span class="text-xs">Second-hand</span>
+                                            <span class="text-sm">{{ item.name }}</span>
+                                            <span class="text-xs">{{ item.itemCondition }}</span>
                                         </div>
-                                        <span class="text-md">$200</span>
+                                        <span class="text-md">{{ item.price }}</span>
                                     </div>
+                                    {% if app.user %}
+                                    <span data-action="click->user#deleteItem" data-item-id="{{ item.id }}" class="bg-white cursor-pointer border-red-600 rounded-full p-1.5 absolute top-0 right-0">
+                                        <img data-item-id="{{ item.id }}" src="{{ asset('build/images/bin.svg') }}"/>
+                                    </span>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}

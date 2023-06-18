@@ -61,5 +61,38 @@ export default class extends Controller {
         });
     }
 
+    deleteLecture(event){
+        if (confirm("Do you really want to delete this lecture?!")) {
+           let lectureId = event.target.getAttribute('data-lecture-id')
+            let url = '/lectures/delete/' + lectureId
+            fetch(url, {
+                method: 'POST',
+                body: new URLSearchParams()
+            }).then(function (response) {
+                return response.json();
+            }).then(function (json_data) {
+                location.reload()
+            });
+        } else {
+
+        }
+    }
+    deleteItem(event){
+        if (confirm("Do you really want to delete this item?!")) {
+            let itemId = event.target.getAttribute('data-item-id')
+            let url = '/shop/delete/' + itemId
+            fetch(url, {
+                method: 'POST',
+                body: new URLSearchParams()
+            }).then(function (response) {
+                return response.json();
+            }).then(function (json_data) {
+                location.reload()
+            });
+        } else {
+
+        }
+    }
+
 
 }

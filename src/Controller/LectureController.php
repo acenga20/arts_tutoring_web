@@ -9,6 +9,7 @@ use App\Form\RegistrationFormType;
 use App\Repository\LectureRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,6 +65,14 @@ class LectureController extends AbstractController
         return $this->render($template,[
             'form' => $form->createView()
         ]);
+    }
+    #[Route('/delete/{id}', name: 'app_delete_lecture')]
+    public function delete(Lecture $lecture)
+    {
+        $em = $this->doctrine->getManager();
+        $em->remove($lecture);
+        $em->flush();
 
+        return new JsonResponse('success');
     }
 }

@@ -3,26 +3,7 @@
 {% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
-<section id="navigation">
-    <nav id="nav_bar" class="fixed top-0 w-full z-50 gradient flex text-white top-0 justify-between bg-black font-bold py-3 px-5">
-        <div class="flex items-center space-x-6">
-            <div class="text-md">ArtistryLab</div>
-            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex uppercase">
-                lectures
-                <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd">
-
-                    </path>
-                </svg>
-            </button>
-        </div>
-        <div class="flex items-center space-x-4">
-            <a class="text-md"> Sign In </a>
-            <a class="bg-mint px-3 py-2 text-black text-lg rounded-lg">Sign Up</a>
-        </div>
-
-    </nav>
-</section>
+{{ include('header.html.twig') }}
 <section id="hero" class="h-screen w-full" data-controller="home">
 
     <div class="h-full w-fulld">

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
 use App\Entity\Lecture;
 use App\Entity\User;
 use App\Form\ArchiveAccessType;
@@ -30,10 +31,12 @@ class UserController extends AbstractController
         $user = $em->getRepository(User::class)->findOneBy(['id'=> $id]);
         $lecture = $em->getRepository(Lecture::class)->findOneBy(['id'=> 1]);
         $userLectures = $em->getRepository(Lecture::class)->findBy(['user'=>$id]);
+        $userItems = $em->getRepository(Item::class)->findBy(['user'=>$id]);
         return $this->render('user/single_user.html.twig', [
             'user' => $user,
             'lecture' => $lecture,
             'user_lectures' => $userLectures,
+            'user_items' =>  $userItems,
 
         ]);
     }
