@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Shop{% endblock %}
 
 {% block body %}
     {{ include('header.html.twig') }}
@@ -74,15 +74,15 @@
                 </div>
                 <div class="w-3/4 flex flex-col">
                     <div class="grid grid-cols-4 gap-x-3 gap-y-5">
-                        {% for i in 0..10 %}
+                        {% for item in items %}
                             <div class="card flex flex-col bg-white rounded-xl h-56 w-56 shadow-lg">
                                 <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
                                 <div class="flex justify-between h-1/4">
                                     <div class="flex flex-col mx-2">
-                                        <span class="text-sm">Vintage Guitar</span>
-                                        <span class="text-xs">Second-hand</span>
+                                        <span class="text-sm">{{ item.name }}</span>
+                                        <span class="text-xs">{{ item.itemCondition }}</span>
                                     </div>
-                                    <span class="text-md">$200</span>
+                                    <span class="text-md">{{ item.price }}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -124,9 +124,6 @@
     });
 
 </script>
-    <footer>
-        <div class="flex h-72 bg-black items-center">
-            <span class="text-white text-2xl uppercase mx-auto">footer</span>
-        </div>
-    </footer>
+
+    {{ include('footer.html.twig') }}
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
 use App\Entity\Lecture;
 use App\Entity\User;
 use App\Form\NewLectureType;
@@ -28,7 +29,10 @@ class LectureController extends AbstractController
     #[Route('/', name:'app_all_lectures')]
     public function allLectures():  Response
     {
+        $em = $this->doctrine->getManager();
+        $lectures = $em->getRepository(Lecture::class)->findAll();
         return $this->render('lecture/all_lectures.html.twig', [
+            'lectures' => $lectures
         ]);
     }
 
@@ -37,8 +41,10 @@ class LectureController extends AbstractController
     {
         $em = $this->doctrine->getManager();
         $lecture = $em->getRepository(Lecture::class)->findOneBy(['id'=> $id]);
+        $items = $em->getRepository(Item::class)->findAll();
         return $this->render('lecture/single_lecture.html.twig', [
-            'lecture' => $lecture
+            'lecture' => $lecture,
+            'items' => $items,
         ]);
     }
 

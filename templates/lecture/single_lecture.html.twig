@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Lecture{% endblock %}
 
 {% block body %}
     {{ include('header.html.twig') }}
@@ -86,41 +86,17 @@
                 <a class="bg-mint w-fit px-4 py-1 rounded-full font-bold">See all</a>
             </div>
             <div class="grid grid-cols-4 mx-12">
-                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
+                {% for i in 0..3 %}
+                <a class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg" href="{{ path('app_one_item',{id:items[i].id}) }}">
                     <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
                     <div class="flex justify-between h-1/4">
                         <div class="flex flex-col mx-2">
-                            <span class="text-sm">Vintage Guitar</span>
+                            <span class="text-sm">{{ items[i].name }}</span>
                         </div>
-                        <span class="text-md">$200</span>
+                        <span class="text-md">{{ items[i].price }}</span>
                     </div>
-                </div>
-                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
-                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                    <div class="flex justify-between h-1/4">
-                        <div class="flex flex-col mx-2">
-                            <span class="text-sm">Vintage Guitar</span>
-                        </div>
-                        <span class="text-md">$200</span>
-                    </div>
-                </div>
-                <div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
-                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                    <div class="flex justify-between h-1/4">
-                        <div class="flex flex-col mx-2">
-                            <span class="text-sm">Vintage Guitar</span>
-                        </div>
-                        <span class="text-md">$200</span>
-                    </div>
-                </div><div class="card flex flex-col bg-white rounded-xl h-64 w-72 shadow-lg">
-                    <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                    <div class="flex justify-between h-1/4">
-                        <div class="flex flex-col mx-2">
-                            <span class="text-sm">Vintage Guitar</span>
-                        </div>
-                        <span class="text-md">$200</span>
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
 
             </div>
         </div>
@@ -128,9 +104,6 @@
 
 
 
-    <footer>
-        <div class="flex h-72 bg-black items-center">
-            <span class="text-white text-2xl uppercase mx-auto">footer</span>
-        </div>
-    </footer>
+
+    {{ include('footer.html.twig') }}
 {% endblock %}

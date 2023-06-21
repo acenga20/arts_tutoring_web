@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}ArtistryLabs{% endblock %}
 
 {% block body %}
 {{ include('header.html.twig') }}
@@ -35,56 +35,30 @@
             <a class="bg-mint w-fit px-4 py-1 rounded-full font-bold">See all</a>
         </div>
         <div class="grid grid-cols-3 gap-x-16 gap-y-10">
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
+            {% for i in 0..2 %}
+            <a class="flex flex-col rounded-b-3xl shadow-lg pb-6" href="{{ path('app_single_lecture', {id:lectures[i].id}) }}">
                 <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
                 <div class="flex flex-col px-4 py-2">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
+                    <div class="text-end text-xs text-black/50">1 hours</div>
                     <div>
-                        <div class="font-semibold text-sm mt-2 mb-3 ">Never too old to learn a new instrument - Piano lesson beginner level </div>
-                        <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                        <div class="font-semibold text-sm mt-2 mb-3 ">{{ lectures[i].name }}</div>
+                        <div class="font-semibold text-sm text-black/60">{{ lectures[i].user.name }} {{ lectures[i].user.surname }}</div>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
-                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}">
-                <div class="flex flex-col justify-between px-4 py-2  ">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
-                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Guitar lesson beginner level </div>
-                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
-                </div>
-            </div>
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
-                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
-                <div class="flex flex-col justify-between px-4 py-2">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
-                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
-                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
-                </div>
-            </div>
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
-                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
-                <div class="flex flex-col justify-between px-4 py-2">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
-                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
-                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
-                </div>
-            </div>
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
-                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}">
-                <div class="flex flex-col justify-between px-4 py-2  ">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
-                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Guitar lesson beginner level </div>
-                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
-                </div>
-            </div>
-            <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
-                <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
-                <div class="flex flex-col justify-between px-4 py-2">
-                    <div class="text-end text-xs text-black/50">1 hour</div>
-                    <div class="font-semibold text-sm mt-2 mb-3">Never too old to learn a new instrument - Piano lesson beginner level </div>
-                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
-                </div>
-            </div>
+            </a>
+            {% endfor %}
+            {% for i in 3..5 %}
+                <a class="flex flex-col rounded-b-3xl shadow-lg pb-6"  href="{{ path('app_single_lecture', {id:lectures[i].id}) }}">
+                    <img class="h-72 object-none rounded-t-3xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}">
+                    <div class="flex flex-col px-4 py-2">
+                        <div class="text-end text-xs text-black/50">1 hours</div>
+                        <div>
+                            <div class="font-semibold text-sm mt-2 mb-3 ">{{ lectures[i].name }}</div>
+                            <div class="font-semibold text-sm text-black/60">{{ lectures[i].user.name }} {{ lectures[i].user.surname }}</div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
 
         </div>
     </div>
@@ -98,101 +72,21 @@
     </div>
     <swiper-container class="mySwiper pt-12  h-96" id="shop-swiper" space-between="40" initial-slide="2" slide-to-clicked-slide="true"
                       slides-per-view="4.3" centered-slides="true">
+        {% for i in 0..6 %}
         <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
+            <a class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg" href="{{ path('app_one_item', {id:items[i].id}) }}">
                 <img class="h-3/4 w-full rounded-xl object-cover " src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
                 <div class="flex justify-between h-1/4">
                     <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
+                        <span class="text-sm">{{ items[i].name }}</span>
+                        <span class="text-xs">{{ items[i].itemCondition }}</span>
                     </div>
-                    <span class="text-md">$200</span>
+                    <span class="text-md">{{ items[i].price }}</span>
                 </div>
-            </div>
+            </a>
         </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72 shadow-lg">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/productThumb.f58073be.jpeg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72">
-                <img class="h-3/4 w-full object-cover rounded-xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
-        <swiper-slide>
-            <div class="card flex flex-col bg-white rounded-xl h-72 w-72">
-                <img class="h-3/4 w-fit rounded-xl" src="{{ asset('build/images/guitar.2743614c.jpg') }}"/>
-                <div class="flex justify-between h-1/4">
-                    <div class="flex flex-col mx-2">
-                        <span class="text-sm">Vintage Guitar</span>
-                        <span class="text-xs">Second-hand</span>
-                    </div>
-                    <span class="text-md">$200</span>
-                </div>
-            </div>
-        </swiper-slide>
+        {% endfor %}
+
     </swiper-container>
     <script>
         let swiperEl = document.getElementById('shop-swiper')
@@ -269,9 +163,5 @@
     </div>
 </section>
 
-    <footer>
-        <div class="flex h-72 bg-black items-center">
-            <span class="text-white text-2xl uppercase mx-auto">footer</span>
-        </div>
-    </footer>
+    {{ include('footer.html.twig') }}
 {% endblock %}

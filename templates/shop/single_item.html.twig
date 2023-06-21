@@ -32,7 +32,9 @@
                        <span class="text-lg font-semibold">$50</span>
                    </div>
                </div>
+               {% if app.user %}
                <button class="w-36 py-3 mx-auto bg-mint rounded-xl mt-10" data-action="click->order-manager#orderItem">Add To Basket</button>
+                {% endif %}
            </div>
         </div>
     </section>

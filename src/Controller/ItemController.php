@@ -26,7 +26,10 @@ class ItemController extends AbstractController
     #[Route('/', name:'app_all_items')]
     public function allItems():  Response
     {
+        $em = $this->doctrine->getManager();
+        $items = $em->getRepository(Item::class)->findAll();
         return $this->render('shop/all_items.html.twig', [
+            'items' => $items
         ]);
     }
     #[Route('/{id}', name:'app_one_item')]

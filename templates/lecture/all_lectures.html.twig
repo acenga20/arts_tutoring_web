@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block title %}Lectures{% endblock %}
 
 {% block body %}
     {{ include('header.html.twig') }}
@@ -53,14 +53,14 @@
                 </div>
                 <div class="w-3/4 flex flex-col">
                     <div class="grid grid-cols-3 gap-x-3 gap-y-5">
-                        {% for i in 0..10 %}
+                        {% for lecture in lectures %}
                         <div class="flex flex-col rounded-b-3xl shadow-lg pb-6">
                             <img class="h-40 object-none rounded-t-3xl" src="{{ asset('build/images/image.41a72287.jpg') }}">
                             <div class="flex flex-col px-4 py-2">
                                 <div class="text-end text-xs text-black/50">1 hour</div>
                                 <div>
-                                    <div class="font-semibold text-sm mt-2 mb-3 ">Never too old to learn a new instrument - Piano lesson beginner level </div>
-                                    <div class="font-semibold text-sm text-black/60">Yana Mitchell</div>
+                                    <div class="font-semibold text-sm mt-2 mb-3 ">{{ lecture.name }}</div>
+                                    <div class="font-semibold text-sm text-black/60">{{ lecture.user.name }} {{ lecture.user.surname }}</div>
                                 </div>
                             </div>
                         </div>
@@ -75,9 +75,5 @@
 
 
 
-    <footer>
-        <div class="flex h-72 bg-black items-center">
-            <span class="text-white text-2xl uppercase mx-auto">footer</span>
-        </div>
-    </footer>
+    {{ include('footer.html.twig') }}
 {% endblock %}
